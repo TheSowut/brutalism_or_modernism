@@ -1,3 +1,5 @@
+*.pkl
+**/*.ipynb_checkpoints/
 images/
 styles/
-*.pkl
+flagged/
