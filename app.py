@@ -20,7 +20,11 @@ def classify_image(image):
 # %% gradio.ipynb 6
 image = gr.components.Image()
 label = gr.components.Label()
-examples = ['images/brutalism.jpg', 'images/modernism.jpg']
+examples = []
 
+for i in range(1, 4):
+    examples.append(f'images/brutalism{i}.jpg')
+    examples.append(f'images/modernism{i}.jpg')
+    
 intf = gr.Interface(fn=classify_image, inputs=image, outputs=label, examples=examples)
 intf.launch(inline=False)
