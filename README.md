@@ -5,14 +5,14 @@ dls.valid.show_batch(max_n=8, nrows=2)
 
 
 
-![png](brutalism_or_modernism_files/brutalism_or_modernism_8_0.png)
+![png](brutalism_or_modernism_files/brutalism_or_modernism_14_0.png)
 
 
 
 
 ```python
 learn = vision_learner(dls, resnet18, metrics=error_rate)
-learn.fine_tune(7)
+learn.fine_tune(10)
 ```
 
 
@@ -20,7 +20,6 @@ learn.fine_tune(7)
 
 
 
-
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: left;">
@@ -34,9 +33,9 @@ learn.fine_tune(7)
   <tbody>
     <tr>
       <td>0</td>
-      <td>1.503708</td>
-      <td>1.029500</td>
-      <td>0.473684</td>
+      <td>1.615729</td>
+      <td>1.096224</td>
+      <td>0.562500</td>
       <td>00:07</td>
     </tr>
   </tbody>
@@ -48,7 +47,6 @@ learn.fine_tune(7)
 
 
 
-
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: left;">
@@ -62,66 +60,76 @@ learn.fine_tune(7)
   <tbody>
     <tr>
       <td>0</td>
-      <td>0.985326</td>
-      <td>0.904235</td>
-      <td>0.421053</td>
-      <td>00:07</td>
+      <td>1.016636</td>
+      <td>0.961717</td>
+      <td>0.468750</td>
+      <td>00:08</td>
     </tr>
     <tr>
       <td>1</td>
-      <td>0.841009</td>
-      <td>0.707181</td>
-      <td>0.394737</td>
-      <td>00:07</td>
+      <td>0.805441</td>
+      <td>0.843640</td>
+      <td>0.406250</td>
+      <td>00:09</td>
     </tr>
     <tr>
       <td>2</td>
-      <td>0.653282</td>
-      <td>0.518229</td>
-      <td>0.263158</td>
+      <td>0.635115</td>
+      <td>1.023298</td>
+      <td>0.375000</td>
       <td>00:08</td>
     </tr>
     <tr>
       <td>3</td>
-      <td>0.530516</td>
-      <td>0.467340</td>
-      <td>0.210526</td>
-      <td>00:10</td>
+      <td>0.509113</td>
+      <td>1.047415</td>
+      <td>0.343750</td>
+      <td>00:08</td>
     </tr>
     <tr>
       <td>4</td>
-      <td>0.424877</td>
-      <td>0.443567</td>
-      <td>0.157895</td>
+      <td>0.421787</td>
+      <td>1.013373</td>
+      <td>0.312500</td>
       <td>00:08</td>
     </tr>
     <tr>
       <td>5</td>
-      <td>0.362354</td>
-      <td>0.412099</td>
-      <td>0.131579</td>
+      <td>0.347252</td>
+      <td>0.977353</td>
+      <td>0.250000</td>
       <td>00:09</td>
     </tr>
     <tr>
       <td>6</td>
-      <td>0.312246</td>
-      <td>0.390802</td>
-      <td>0.105263</td>
-      <td>00:07</td>
+      <td>0.295770</td>
+      <td>0.945430</td>
+      <td>0.250000</td>
+      <td>00:09</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>0.255178</td>
+      <td>0.896436</td>
+      <td>0.250000</td>
+      <td>00:08</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>0.225590</td>
+      <td>0.860104</td>
+      <td>0.218750</td>
+      <td>00:08</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>0.199565</td>
+      <td>0.830705</td>
+      <td>0.218750</td>
+      <td>00:08</td>
     </tr>
   </tbody>
 </table>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -132,7 +140,4 @@ learn.fine_tune(7)
 
 
 
-![png](brutalism_or_modernism_files/brutalism_or_modernism_10_3.png)
-
-
-
+![png](brutalism_or_modernism_files/brutalism_or_modernism_16_3.png)
