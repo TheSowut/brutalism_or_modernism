@@ -17,9 +17,7 @@ def classify_image(image):
     pred, idx, probs = learn.predict(image)
     return dict(zip(categories, map(float, probs)))
 
-classify_image(image)
-
-# %% gradio.ipynb 5
+# %% gradio.ipynb 6
 image = gr.components.Image()
 label = gr.components.Label()
 examples = ['images/brutalism.jpg', 'images/modernism.jpg']
