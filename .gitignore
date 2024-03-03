@@ -1,6 +1,8 @@
+node_modules
 *.pkl
 **/*.ipynb_checkpoints/
 images/
 styles/
 flagged/
 gradio/
+package-lock.json
