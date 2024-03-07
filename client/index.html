@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>brutalism or modernism</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="script.js"></script>
 </head>
+
 <body>
-    <button id="btnTest">btn</button>
-    <script>
-        document.querySelector('#btnTest').addEventListener('click', async () => {
-            await fetch('http://www.localhost:8080/test')
-                .then(res => res.json())
-                .then(res => alert(JSON.stringify(res)));
-        });
-    </script>
+    <div class="flex items-center justify-center w-full h-[100vh] bg-[#4A90E2]">
+        <div id='drop_zone' class="flex items-center justify-center w-[35%] h-[40%]  outline-dotted bg-[#F2F2F3]">
+            <p id="drop_zone_text" class="font-mono text-4xl">Drop 🏛️ image</p>
+        </div>
+    </div>
 </body>
+
 </html>
