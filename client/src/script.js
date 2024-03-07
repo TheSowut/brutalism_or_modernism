@@ -11,7 +11,7 @@ var COLOR_SCHEME;
 })(COLOR_SCHEME || (COLOR_SCHEME = {}));
 var TEXT;
 (function (TEXT) {
-    TEXT["DEFAULT"] = "Drop \uD83C\uDFE2 image";
+    TEXT["DEFAULT"] = "Drop \uD83C\uDFDB\uFE0F image";
     TEXT["SUCCESS"] = "\u2705";
 })(TEXT || (TEXT = {}));
 // const dropHandler = (event: any) => {
@@ -39,8 +39,7 @@ window.addEventListener('load', function () {
     var text = document.querySelector('#drop_zone_text');
     box.addEventListener('drop', function (event) {
         event.preventDefault();
-        box.style.outlineColor = COLOR_SCHEME.BLACK;
-        box.style.outlineStyle = 'dotted';
+        box.style.outlineStyle = 'none';
         text.innerHTML = TEXT.DEFAULT;
     });
     box.addEventListener('dragover', function (event) {
@@ -51,8 +50,7 @@ window.addEventListener('load', function () {
     });
     box.addEventListener('dragleave', function (event) {
         event.preventDefault();
-        box.style.outlineColor = COLOR_SCHEME.BLACK;
-        box.style.outlineStyle = 'dotted';
+        box.style.outlineStyle = 'none';
         text.innerHTML = TEXT.DEFAULT;
     });
 });

@@ -1,5 +1,3 @@
-import tailwindConfig from "../tailwind.config";
-
 enum COLOR_SCHEME {
     'PRIMARY' = '#4A90E2',
     'SUCCESS' = '#82DD55',
@@ -50,8 +48,7 @@ window.addEventListener('load', () => {
     box.addEventListener('drop', (event: any) => {
         event.preventDefault();
 
-        box.style.outlineColor = COLOR_SCHEME.BLACK;
-        box.style.outlineStyle = 'dotted';
+        box.style.outlineStyle = 'none';
         text.innerHTML = TEXT.DEFAULT;
     });
 
@@ -66,8 +63,7 @@ window.addEventListener('load', () => {
     box.addEventListener('dragleave', (event: any) => {
         event.preventDefault();
 
-        box.style.outlineColor = COLOR_SCHEME.BLACK;
-        box.style.outlineStyle = 'dotted';
+        box.style.outlineStyle = 'none';
         text.innerHTML = TEXT.DEFAULT;
     })
 
