@@ -86,7 +86,10 @@ var dropHandler = function (event) { return __awaiter(_this, void 0, void 0, fun
                         var imgElement = document.querySelector('#test');
                         imgElement.src = 'data:' + res.file.mimetype + ';base64,' + res.file.base64Image;
                     })
-                        .catch(function (err) { return console.error(err); })];
+                        .catch(function (err) {
+                        alert(err);
+                        setErrorState();
+                    })];
             case 1:
                 _a.sent();
                 return [2 /*return*/];
@@ -129,21 +132,22 @@ var setDefaultState = function () {
  */
 var setLoadingState = function () {
     dropZone.style.outlineStyle = 'none';
-    dropZone.innerHTML = TEXT.DEFAULT;
+    dropZoneText.innerHTML = TEXT.DEFAULT;
 };
 /**
  * Set the app to 'success' state.
  */
 var setSuccessState = function () {
-    dropZoneText.innerHTML = TEXT.SUCCESS;
     dropZone.style.outlineColor = COLOR_SCHEME.SUCCESS;
     dropZone.style.outlineStyle = 'solid';
+    dropZoneText.innerHTML = TEXT.SUCCESS;
 };
 /**
  * Set the app to 'error' state.
  */
 var setErrorState = function () {
     dropZone.style.outlineColor = COLOR_SCHEME.ERROR;
+    dropZone.style.outlineStyle = 'solid';
     dropZoneText.innerHTML = TEXT.ERROR;
 };
 /**

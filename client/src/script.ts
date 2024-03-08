@@ -50,7 +50,10 @@ const dropHandler = async (event: any) => {
             let imgElement: HTMLImageElement = document.querySelector('#test')!;
             imgElement.src = 'data:' + res.file.mimetype + ';base64,' + res.file.base64Image;
         })
-        .catch(err => console.error(err));
+        .catch(err => {
+            alert(err);
+            setErrorState();
+        });
 }
 
 /**
@@ -95,16 +98,16 @@ const setDefaultState = () => {
  */
 const setLoadingState = () => {
     dropZone.style.outlineStyle = 'none';
-    dropZone.innerHTML = TEXT.DEFAULT;
+    dropZoneText.innerHTML = TEXT.DEFAULT;
 }
 
 /**
  * Set the app to 'success' state.
  */
 const setSuccessState = () => {
-    dropZoneText.innerHTML = TEXT.SUCCESS;
     dropZone.style.outlineColor = COLOR_SCHEME.SUCCESS;
     dropZone.style.outlineStyle = 'solid';
+    dropZoneText.innerHTML = TEXT.SUCCESS;
 }
 
 /**
@@ -112,6 +115,7 @@ const setSuccessState = () => {
  */
 const setErrorState = () => {
     dropZone.style.outlineColor = COLOR_SCHEME.ERROR;
+    dropZone.style.outlineStyle = 'solid';
     dropZoneText.innerHTML = TEXT.ERROR;
 }
 
