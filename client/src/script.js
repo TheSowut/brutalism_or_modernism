@@ -53,6 +53,7 @@ var TEXT;
     TEXT["DEFAULT"] = "Drop \uD83C\uDFDB\uFE0F image";
     TEXT["SUCCESS"] = "\u2705";
     TEXT["LOADING"] = "\u23F3";
+    TEXT["ERROR"] = "\u274C";
 })(TEXT || (TEXT = {}));
 var handleClickImport = function () {
     alert(123);
@@ -63,29 +64,50 @@ var handleClickImport = function () {
  * @param event
  */
 var dropHandler = function (event) { return __awaiter(_this, void 0, void 0, function () {
+    var file, image;
     return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                event.preventDefault();
-                // Loading begins
-                dropZone.style.outlineColor = COLOR_SCHEME.WARNING;
-                dropZoneText.innerHTML = TEXT.LOADING;
-                return [4 /*yield*/, fetch('http://www.localhost:8080/test')
-                        .then(function (res) { return res.json(); })
-                        .then(function (res) {
-                        alert(JSON.stringify(res));
-                        setDefaultState();
-                    })
-                        .catch(function (e) {
-                        alert(e);
-                        setDefaultState();
-                    })];
-            case 1:
-                _a.sent();
-                return [2 /*return*/];
+        event.preventDefault();
+        // Loading begins
+        dropZone.style.outlineColor = COLOR_SCHEME.WARNING;
+        dropZoneText.innerHTML = TEXT.LOADING;
+        file = event.dataTransfer.items[event.dataTransfer.items.length - 1];
+        image = file.getAsFile();
+        if (!isImage(image)) {
+            setErrorState();
+            return [2 /*return*/];
         }
+        return [2 /*return*/];
     });
 }); };
+var prepareReader = function (file) {
+    if (!isImage(file)) {
+        setErrorState();
+        return;
+    }
+    var reader = new FileReader();
+    var img = new Image();
+    reader.onload = function (readerEvent) {
+        img.onload = function () { return resizeImage(img); };
+        img.src = readerEvent.target.result;
+    };
+    reader.readAsDataURL(file);
+};
+/**
+ * Check if a file is an image
+ * @param file
+ * @returns
+ */
+var isImage = function (file) { return file.type.match(/image.*/); };
+var resizeImage = function (image) {
+    var _a;
+    var WIDTH_HEIGHT_PX = 192;
+    var canvas = document.createElement('canvas');
+    canvas.width = WIDTH_HEIGHT_PX;
+    canvas.height = WIDTH_HEIGHT_PX;
+    (_a = canvas.getContext('2d')) === null || _a === void 0 ? void 0 : _a.drawImage(image, 0, 0, WIDTH_HEIGHT_PX, WIDTH_HEIGHT_PX);
+    var dataUrl = canvas.toDataURL('image/png');
+    console.log(dataUrl);
+};
 /**
  * Handle dragging of picture over element.
  *
@@ -122,9 +144,16 @@ var setLoadingState = function () {
  * Set the app to 'success' state.
  */
 var setSuccessState = function () {
+    dropZoneText.innerHTML = TEXT.SUCCESS;
     dropZone.style.outlineColor = COLOR_SCHEME.SUCCESS;
     dropZone.style.outlineStyle = 'solid';
-    dropZoneText.innerHTML = TEXT.SUCCESS;
+};
+/**
+ * Set the app to 'error' state.
+ */
+var setErrorState = function () {
+    dropZone.style.outlineColor = COLOR_SCHEME.ERROR;
+    dropZoneText.innerHTML = TEXT.ERROR;
 };
 /**
  * Load HTML Elements.
