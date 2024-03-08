@@ -6,3 +6,4 @@ styles/
 flagged/
 gradio/
 package-lock.json
+**/.env
