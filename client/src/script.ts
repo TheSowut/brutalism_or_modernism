@@ -97,8 +97,9 @@ const setDefaultState = () => {
  * Set the app to 'loading' state.
  */
 const setLoadingState = () => {
-    dropZone.style.outlineStyle = 'none';
-    dropZoneText.innerHTML = TEXT.DEFAULT;
+    dropZone.style.outlineStyle = 'solid';
+    dropZone.style.outlineColor = COLOR_SCHEME.WARNING;
+    dropZoneText.innerHTML = TEXT.LOADING;
 }
 
 /**

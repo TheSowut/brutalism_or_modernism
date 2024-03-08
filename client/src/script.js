@@ -131,8 +131,9 @@ var setDefaultState = function () {
  * Set the app to 'loading' state.
  */
 var setLoadingState = function () {
-    dropZone.style.outlineStyle = 'none';
-    dropZoneText.innerHTML = TEXT.DEFAULT;
+    dropZone.style.outlineStyle = 'solid';
+    dropZone.style.outlineColor = COLOR_SCHEME.WARNING;
+    dropZoneText.innerHTML = TEXT.LOADING;
 };
 /**
  * Set the app to 'success' state.
