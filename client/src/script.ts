@@ -30,45 +30,27 @@ const handleClickImport = () => {
  */
 const dropHandler = async (event: any) => {
     event.preventDefault();
+    setLoadingState();
 
-    // Loading begins
-    dropZone.style.outlineColor = COLOR_SCHEME.WARNING;
-    dropZoneText.innerHTML = TEXT.LOADING;
-
-    const file = event.dataTransfer.items[event.dataTransfer.items.length - 1];
-    const image = file.getAsFile();
-    if (!isImage(image)) {
-        setErrorState();
-        return;
-    }
-
-    const formData = new FormData();
-    formData.append('image', image);
-
-    await fetch('/upload', {
-        method: 'POST',
-        body: formData
-    })
-        .then(res => res.json())
-        .then(console.log)
-        .catch(err => console.error(err));
-}
-
-const prepareReader = (file: File) => {
+    const file = event.dataTransfer.items[0].getAsFile();
     if (!isImage(file)) {
         setErrorState();
         return;
     }
 
-    const reader = new FileReader();
-    const img = new Image();
+    const formData = new FormData();
+    formData.append('image', file);
 
-    reader.onload = (readerEvent: any) => {
-        img.onload = () => resizeImage(img);
-        img.src = readerEvent.target.result;
-    }
-
-    reader.readAsDataURL(file);
+    await fetch('http://www.localhost:8080/recognize', {
+        method: 'POST',
+        body: formData
+    })
+        .then(res => res.json())
+        .then(res => {
+            let imgElement: HTMLImageElement = document.querySelector('#test')!;
+            imgElement.src = 'data:' + res.file.mimetype + ';base64,' + res.file.base64Image;
+        })
+        .catch(err => console.error(err));
 }
 
 /**
@@ -77,16 +59,6 @@ const prepareReader = (file: File) => {
  * @returns
  */
 const isImage = (file: File) => file.type.match(/image.*/);
-
-const resizeImage = (image: HTMLImageElement) => {
-    const WIDTH_HEIGHT_PX: number = 192;
-    const canvas = document.createElement('canvas');
-    canvas.width = WIDTH_HEIGHT_PX;
-    canvas.height = WIDTH_HEIGHT_PX;
-    canvas.getContext('2d')?.drawImage(image, 0, 0, WIDTH_HEIGHT_PX, WIDTH_HEIGHT_PX);
-    const dataUrl: string = canvas.toDataURL('image/png');
-    console.log(dataUrl);
-}
 
 /**
  * Handle dragging of picture over element.
