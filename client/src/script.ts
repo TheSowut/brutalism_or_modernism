@@ -1,5 +1,5 @@
-let box: HTMLDivElement;
-let text: HTMLParagraphElement;
+let dropZone: HTMLDivElement;
+let dropZoneText: HTMLParagraphElement;
 
 enum COLOR_SCHEME {
     'PRIMARY' = '#4A90E2',
@@ -27,12 +27,24 @@ const handleClickImport = () => {
  *
  * @param event
  */
-const dropHandler = (event: any) => {
+const dropHandler = async (event: any) => {
     event.preventDefault();
 
     // Loading begins
-    box.style.outlineColor = COLOR_SCHEME.WARNING;
-    text.innerHTML = TEXT.LOADING;
+    dropZone.style.outlineColor = COLOR_SCHEME.WARNING;
+    dropZoneText.innerHTML = TEXT.LOADING;
+
+    await fetch('http://www.localhost:8080/test')
+        .then(res => res.json())
+        .then(res => {
+            alert(JSON.stringify(res))
+            setDefaultState();
+        })
+        .catch(e => {
+            alert(e);
+            setDefaultState();
+        });
+
 }
 
 /**
@@ -43,9 +55,7 @@ const dropHandler = (event: any) => {
 const dragOverHandler = (event: any) => {
     event.preventDefault();
 
-    box.style.outlineColor = COLOR_SCHEME.SUCCESS;
-    box.style.outlineStyle = 'solid';
-    text.innerHTML = TEXT.SUCCESS;
+    setSuccessState();
 }
 
 /**
@@ -56,20 +66,38 @@ const dragOverHandler = (event: any) => {
 const dragLeaveHandler = (event: any) => {
     event.preventDefault();
 
-    box.style.outlineStyle = 'none';
-    text.innerHTML = TEXT.DEFAULT;
+    setDefaultState();
+}
+
+/**
+ * Return the app to it's default state.
+ */
+const setDefaultState = () => {
+    dropZone.style.outlineStyle = 'none';
+    dropZoneText.innerHTML = TEXT.DEFAULT;
+}
+
+/**
+ * Set the app to 'loading' state.
+ */
+const setLoadingState = () => {
+    dropZone.style.outlineStyle = 'none';
+    dropZone.innerHTML = TEXT.DEFAULT;
+}
+
+/**
+ * Set the app to 'success' state.
+ */
+const setSuccessState = () => {
+    dropZone.style.outlineColor = COLOR_SCHEME.SUCCESS;
+    dropZone.style.outlineStyle = 'solid';
+    dropZoneText.innerHTML = TEXT.SUCCESS;
 }
 
 /**
  * Load HTML Elements.
  */
 window.addEventListener('load', () => {
-    // document.querySelector('#btnTest')?.addEventListener('click', async () => {
-    //     await fetch('http://www.localhost:8080/test')
-    //         .then(res => res.json())
-    //         .then(res => alert(JSON.stringify(res)));
-    // });
-
-    box = document.querySelector('#drop_zone')!;
-    text = document.querySelector('#drop_zone_text')!;
+    dropZone = document.querySelector('#drop_zone')!;
+    dropZoneText = document.querySelector('#drop_zone_text')!;
 });
