@@ -1,3 +1,5 @@
+var box;
+var text;
 var COLOR_SCHEME;
 (function (COLOR_SCHEME) {
     COLOR_SCHEME["PRIMARY"] = "#4A90E2";
@@ -14,43 +16,31 @@ var TEXT;
     TEXT["DEFAULT"] = "Drop \uD83C\uDFDB\uFE0F image";
     TEXT["SUCCESS"] = "\u2705";
 })(TEXT || (TEXT = {}));
-// const dropHandler = (event: any) => {
-//     event.preventDefault();
-//     const box: HTMLDivElement = document.querySelector('#drop_zone')!;
-//     box.style.backgroundColor = 'white';
-// }
-// const dragOverHandler = (event: any) => {
-//     event.preventDefault();
-//     const box: HTMLDivElement = document.querySelector('#drop_zone')!;
-//     box.style.backgroundColor = 'red';
-// }
-// const dragLeaveHandler = (event: any) => {
-//     event.preventDefault();
-//     const box: HTMLDivElement = document.querySelector('#drop_zone')!;
-//     box.style.backgroundColor = 'white';
-// }
+var handleClickImport = function () {
+    alert(123);
+};
+var dropHandler = function (event) {
+    event.preventDefault();
+    box.style.outlineStyle = 'none';
+    text.innerHTML = TEXT.DEFAULT;
+};
+var dragOverHandler = function (event) {
+    event.preventDefault();
+    box.style.outlineColor = COLOR_SCHEME.SUCCESS;
+    box.style.outlineStyle = 'solid';
+    text.innerHTML = TEXT.SUCCESS;
+};
+var dragLeaveHandler = function (event) {
+    event.preventDefault();
+    box.style.outlineStyle = 'none';
+    text.innerHTML = TEXT.DEFAULT;
+};
 window.addEventListener('load', function () {
     // document.querySelector('#btnTest')?.addEventListener('click', async () => {
     //     await fetch('http://www.localhost:8080/test')
     //         .then(res => res.json())
     //         .then(res => alert(JSON.stringify(res)));
     // });
-    var box = document.querySelector('#drop_zone');
-    var text = document.querySelector('#drop_zone_text');
-    box.addEventListener('drop', function (event) {
-        event.preventDefault();
-        box.style.outlineStyle = 'none';
-        text.innerHTML = TEXT.DEFAULT;
-    });
-    box.addEventListener('dragover', function (event) {
-        event.preventDefault();
-        box.style.outlineColor = COLOR_SCHEME.SUCCESS;
-        box.style.outlineStyle = 'solid';
-        text.innerHTML = TEXT.SUCCESS;
-    });
-    box.addEventListener('dragleave', function (event) {
-        event.preventDefault();
-        box.style.outlineStyle = 'none';
-        text.innerHTML = TEXT.DEFAULT;
-    });
+    box = document.querySelector('#drop_zone');
+    text = document.querySelector('#drop_zone_text');
 });

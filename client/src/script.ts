@@ -1,3 +1,6 @@
+let box: HTMLDivElement;
+let text: HTMLParagraphElement;
+
 enum COLOR_SCHEME {
     'PRIMARY' = '#4A90E2',
     'SUCCESS' = '#82DD55',
@@ -14,26 +17,31 @@ enum TEXT {
     'SUCCESS' = '✅'
 }
 
-// const dropHandler = (event: any) => {
-//     event.preventDefault();
+const handleClickImport = () => {
+    alert(123);
+}
 
-//     const box: HTMLDivElement = document.querySelector('#drop_zone')!;
-//     box.style.backgroundColor = 'white';
-// }
+const dropHandler = (event: any) => {
+    event.preventDefault();
 
-// const dragOverHandler = (event: any) => {
-//     event.preventDefault();
+    box.style.outlineStyle = 'none';
+    text.innerHTML = TEXT.DEFAULT;
+}
 
-//     const box: HTMLDivElement = document.querySelector('#drop_zone')!;
-//     box.style.backgroundColor = 'red';
-// }
+const dragOverHandler = (event: any) => {
+    event.preventDefault();
 
-// const dragLeaveHandler = (event: any) => {
-//     event.preventDefault();
+    box.style.outlineColor = COLOR_SCHEME.SUCCESS;
+    box.style.outlineStyle = 'solid';
+    text.innerHTML = TEXT.SUCCESS;
+}
 
-//     const box: HTMLDivElement = document.querySelector('#drop_zone')!;
-//     box.style.backgroundColor = 'white';
-// }
+const dragLeaveHandler = (event: any) => {
+        event.preventDefault();
+
+        box.style.outlineStyle = 'none';
+        text.innerHTML = TEXT.DEFAULT;
+}
 
 window.addEventListener('load', () => {
     // document.querySelector('#btnTest')?.addEventListener('click', async () => {
@@ -42,29 +50,6 @@ window.addEventListener('load', () => {
     //         .then(res => alert(JSON.stringify(res)));
     // });
 
-    const box: HTMLDivElement = document.querySelector('#drop_zone')!;
-    const text: HTMLParagraphElement = document.querySelector('#drop_zone_text')!;
-
-    box.addEventListener('drop', (event: any) => {
-        event.preventDefault();
-
-        box.style.outlineStyle = 'none';
-        text.innerHTML = TEXT.DEFAULT;
-    });
-
-    box.addEventListener('dragover', (event: any) => {
-        event.preventDefault();
-
-        box.style.outlineColor = COLOR_SCHEME.SUCCESS;
-        box.style.outlineStyle = 'solid';
-        text.innerHTML = TEXT.SUCCESS;
-    });
-
-    box.addEventListener('dragleave', (event: any) => {
-        event.preventDefault();
-
-        box.style.outlineStyle = 'none';
-        text.innerHTML = TEXT.DEFAULT;
-    })
-
+    box = document.querySelector('#drop_zone')!;
+    text = document.querySelector('#drop_zone_text')!;
 });

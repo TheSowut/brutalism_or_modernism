@@ -12,8 +12,9 @@
 
 <body>
     <div class="flex items-center justify-center w-full h-[100vh] bg-blue">
-        <div id='drop_zone' class="flex items-center justify-center w-[35%] h-[40%] rounded-xl bg-white">
-            <p id="drop_zone_text" class="font text-4xl">Drop 🏛️ image</p>
+        <div id='drop_zone' class="flex items-center justify-center w-[35%] h-[40%] rounded-xl bg-white"
+            ondrop="dropHandler(event)" ondragover="dragOverHandler(event)" ondragleave="dragLeaveHandler(event)">
+            <p id="drop_zone_text" class="font text-4xl" onclick="handleClickImport()">Drop 🏛️ image</p>
         </div>
     </div>
 </body>
